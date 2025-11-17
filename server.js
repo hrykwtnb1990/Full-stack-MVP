@@ -1,35 +1,64 @@
-const cors = require('cors');
-const path = require('path');
-
 const express = require('express');
-const service = require('./front/src/services/kaizen.service');
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(
-  cors({
-    origin: 'http://localhost:5173/',
-  })
-);
-app.use('/api', (req, res) => {
-  res.send('つながった');
+
+const knex = require('knex');
+const config = require('./knexfile');
+const db = knex(config.development);
+
+app.get('/kaizen', async (req, res) => {
+  const rows = await db('kaizen').select('*');
+  res.json(rows);
 });
 
-app.get('/', async (req, res) => {
-  try {
-    const data = await service.getById(req.params.id);
-    res.json(data);
-  } catch {
-    res.status(404).json({ error: 'Not Found' });
+app.get('/kaizen/:id', async (req, res) => {
+  const row = await db('kaizen').where({ id: req.params.id }).first();
+  if (!row) return res.status(404).json({ error: 'not found' });
+  res.json(row);
+});
+
+app.post('/kaizen', async (req, res) => {
+  console.log('req.body:', req.body);
+  const {
+    id,
+    date,
+    name,
+    number,
+    department,
+    theme,
+    before,
+    after,
+    solution,
+    Effect_Amount,
+    safe,
+    quality,
+    man_Hour,
+  } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ error: 'idエラーです' });
   }
-});
+  const result = await db('kaizen')
+    .insert({
+      id,
+      date,
+      name,
+      number,
+      department,
+      theme,
+      before,
+      after,
+      solution,
+      Effect_Amount,
+      safe,
+      quality,
+      man_Hour,
+    })
+    .returning('*');
 
-app.post('/', async (req, res) => {
-  const created = await service.create(req.body);
-  res.status(201).json(created);
+  res.status(201).json(result[0]);
 });
+const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is listening on http://localhost:${PORT}`);
 });

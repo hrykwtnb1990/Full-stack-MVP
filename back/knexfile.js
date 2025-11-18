@@ -6,10 +6,10 @@ module.exports = {
       database: 'kaizen',
     },
     migrations: {
-      directory: './migrations',
+      directory: './db/migrations',
     },
     seeds: {
-      durectory: './seeds',
+      directory: './db/seeds',
     },
   },
 };

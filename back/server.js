@@ -37,12 +37,11 @@ app.post('/kaizen', async (req, res) => {
     man_Hour,
   } = req.body;
 
-  if (!id) {
-    return res.status(400).json({ error: 'idエラーです' });
+  if (!theme) {
+    return res.status(400).json({ error: 'themeは必須です' });
   }
   const result = await db('kaizen')
     .insert({
-      id,
       date,
       name,
       number,

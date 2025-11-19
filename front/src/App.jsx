@@ -1,5 +1,9 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import './component/Form';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Form from './component/Form';
+import Page2 from './component/page2';
 
 function KaizenList() {
   const [kaizen, setkaizen] = useState([]);
@@ -35,12 +39,12 @@ function KaizenList() {
   }
 
   return (
-    <div>
-      <h1>Kaizen 一覧</h1>
+    <div class="text-xl max-w-3xl text-center mx-auto border p-4">
+      <h1 class="bg-blue-500 text-3xl">Kaizen 一覧</h1>
       {kaizen.length === 0 ? (
         <p>データがありません</p>
       ) : (
-        <ul>
+        <ul class="text-center">
           {kaizen.map((item) => (
             <li key={item.id}>
               <strong>{item.id}</strong>
@@ -59,9 +63,18 @@ function KaizenList() {
 
 function App() {
   return (
-    <div style={{ padding: '16px' }}>
-      <KaizenList />
-    </div>
+    <BrowserRouter>
+      <div>
+        <KaizenList />
+
+        <Link to="Form">提案する</Link>
+        <Link to="Page2">PAGE2</Link>
+      </div>
+      <Routes>
+        <Route path="/Form" element={<Form />} />
+        <Route path="/Page2" element={<Page2 />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;

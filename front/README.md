@@ -1,16 +1,39 @@
-# React + Vite
+# Kaizen Management App – Deploy on Render
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React（Vite）+ Express + PostgreSQL + Tailwind + Chart.js で構成しています。
+改善活動管理アプリ（Kaizen Management App）を **すべて Render 上で動かす** render で使用します。
 
-Currently, two official plugins are available:
+バックエンド（Express + Knex + PostgreSQL） → Render Web Service
+フロントエンド（React + Vite） → Render Static Site
+DB（PostgreSQL） → Render Managed PostgreSQL
+※未実施
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+バックエンドのセットアップ
+back フォルダのディレクトリで npm install を実行
 
-## React Compiler
+バックエンドの詳細
+back/server.js - API
+repository,services フォルダ- バックエンドとデータベースの処理
+db/maigrations - マイグレーションの操作情報
+db/seeds - テストデータ
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+フロントエンドのセットアップ
+front フォルダのディレクトリで npm install を実行
 
-## Expanding the ESLint configuration
+フロントエンドの詳細
+src/component
+chart.jsx - 提案済みのグラフ
+Form.jsx 　-　提案提出用フォーム
+List.jsx 　- 提出済みデータ一覧　
+Layout.jsx - ページの上部の共通ボタン
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+上記４点を App.jsx に集約して表示しています。
+
+リソース
+chart.jsx https://www.chartjs.org/
+Form.jsx https://react-hook-form.com/
+List.jsx https://reactrouter.com/home
+
+将来の計画
+UI/UX の再検討
+機能追加予定　一覧検索機能、修正機能

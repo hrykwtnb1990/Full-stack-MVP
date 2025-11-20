@@ -9,6 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
+          <Route path="/" element={<KaizenList />} />
           <Route path="/List" element={<KaizenList />} />
           <Route path="/Form" element={<Form />} />
           <Route path="/Chart" element={<KaizenChart />} />

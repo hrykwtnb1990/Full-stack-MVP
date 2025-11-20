@@ -3,31 +3,43 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 function Layout() {
   const location = useLocation();
 
-  const baseClass = 'px-6 py-3 rounded-lg font-semibold transition shadow';
+  const baseClass =
+    'px-6 py-3 rounded-lg font-semibold transition shadow inline-block';
 
-  const inactive = baseClass + 'bg-gray-200 text-gray-700 hover:bg-gray-300';
+  const inactive = baseClass + ' bg-gray-200 text-gray-700 hover:bg-gray-300';
 
-  const active = baseClass + ' bg-blue-500 text-white p-4 hover:bg-blue-400';
+  const active = baseClass + ' bg-blue-500 text-white hover:bg-blue-400';
+
   return (
     <div>
-      <nav className="flex justify-center space-x-6 my-6 shadow-md">
-        <button className={location.pathname === '/Form' ? active : inactive}>
-          <Link to="/Form">提出する</Link>
-        </button>
+      <nav className="flex justify-center space-x-6 my-6 shadow-md py-4 bg-white">
+        <Link
+          to="/Form"
+          className={location.pathname === '/Form' ? active : inactive}
+        >
+          提出する
+        </Link>
 
-        <button className={location.pathname === '/list' ? active : inactive}>
-          <Link to="/list">一覧</Link>
-        </button>
+        <Link
+          to="/list"
+          className={location.pathname === '/list' ? active : inactive}
+        >
+          一覧
+        </Link>
 
-        <button className={location.pathname === '/chart' ? active : inactive}>
-          <Link to="/chart">グラフ</Link>
-        </button>
+        <Link
+          to="/chart"
+          className={location.pathname === '/chart' ? active : inactive}
+        >
+          グラフ
+        </Link>
       </nav>
 
-      <main>
+      <main className="px-4">
         <Outlet />
       </main>
     </div>
   );
 }
+
 export default Layout;

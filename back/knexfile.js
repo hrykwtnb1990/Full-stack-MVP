@@ -2,8 +2,8 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      user: 'postgres',
-      database: 'kaizen',
+      user: process.env.DB_USER,
+      database: process.env.DB_NAME,
     },
     migrations: {
       directory: './db/migrations',

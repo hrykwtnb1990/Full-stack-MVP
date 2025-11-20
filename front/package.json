@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm install && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "npm i&& cd front && npm install && npm run build && rm -rf ../public && cp -r dist ../public"
+    "start": " && rm -rf ../public && cp -r dist ../public"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",

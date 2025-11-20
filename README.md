@@ -1,11 +1,16 @@
 Kaizen Management App
 
-React（Vite）+ Express + PostgreSQL + Tailwind + Chart.js で構成しています。
-改善活動管理アプリ（Kaizen Management App）を **すべて Render 上で動かす** render で使用します。
+React（Vite）+ Express + PostgreSQL + Tailwind + Chart.js 
+で構成しています。
+改善活動管理アプリ（Kaizen Management App）を
+**すべて Render 上で動かす** render で使用します。
 
-バックエンド（Express + Knex + PostgreSQL） → Render Web Service
-フロントエンド（React + Vite） → Render Static Site
-DB（PostgreSQL） → Render Managed PostgreSQL
+バックエンド（Express + Knex + PostgreSQL）
+→ Render Web Service
+フロントエンド（React + Vite）
+→ Render Static Site
+DB（PostgreSQL）
+→ Render Managed PostgreSQL
 ※未実施
 
 バックエンドのセットアップ

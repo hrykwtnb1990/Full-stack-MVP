@@ -12,4 +12,17 @@ module.exports = {
       directory: './db/seeds',
     },
   },
+  production: {
+    client: 'pg',
+    connection: {
+      user: process.env.NODE_ENV,
+      database: process.env.DATABASE_URL,
+    },
+    migrations: {
+      directory: './db/migrations',
+    },
+    seeds: {
+      directory: './db/seeds',
+    },
+  },
 };

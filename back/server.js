@@ -1,13 +1,22 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const app = express();
 const cors = require('cors');
-app.use('/', express.static(__dirname + '../front/dist'));
+
 app.use(express.json());
 app.use(cors());
+
 const knex = require('knex');
 const config = require('./knexfile');
 const db = knex(config[process.env.NODE_ENV || 'development']);
+
+app.use(express.static(path.join(__dirname, '..', 'front', 'dist')));
+
+app.get((req, res, next) => {
+  res.sendFile(path.join, '..', 'front', 'dist', 'index.html');
+});
+
 app.get('/kaizen', async (req, res) => {
   const rows = await db('kaizen').select('*');
   res.json(rows);
